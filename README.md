@@ -6,7 +6,7 @@ HuWillis 的 GitHub 源码收藏仓库：把值得学习、使用和研究的项
 
 **[浏览收藏目录 →](CATALOG.md)** · **[查看同步结果 →](https://github.com/HuWillis/code-atlas/actions/workflows/sync.yml)**
 
-当前尚未收录项目。以后把 GitHub 仓库链接发给管理这个仓库的助手，并说明推荐理由，即可收录。
+已收录项目见上方收藏目录。以后把 GitHub 仓库链接发给管理这个仓库的助手，并说明推荐理由，即可继续收录。
 
 ## 如何收录
 
