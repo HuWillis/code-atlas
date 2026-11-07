@@ -6,7 +6,15 @@ HuWillis 的 GitHub 源码收藏仓库：把值得学习、使用和研究的项
 
 **[浏览收藏目录 →](CATALOG.md)** · **[查看同步结果 →](https://github.com/HuWillis/code-atlas/actions/workflows/sync.yml)**
 
-已收录项目见上方收藏目录。以后把 GitHub 仓库链接发给管理这个仓库的助手，并说明推荐理由，即可继续收录。
+源码副本见上方收藏目录，仅链接收录见下方「链接收藏」。以后把 GitHub 仓库链接发给管理这个仓库的助手，并说明推荐理由，即可继续收录。
+
+## 链接收藏
+
+以下项目仅收藏原仓库链接，不复制源码，也不加入源码自动同步清单。
+
+| 项目 | 简介 | 收录日期 |
+| --- | --- | --- |
+| [Ebony-Vinyl/dsh-our-free-model](https://github.com/Ebony-Vinyl/dsh-our-free-model) | DSH 模型接入插件及本地 API 网关，关注模型接入、渠道管理与转发实现。 | 2026-11-07 |
 
 ## 如何收录
 
