@@ -1,0 +1,49 @@
+name: 同步收藏的源码
+
+on:
+  schedule:
+    - cron: '23 1 * * *' # 北京时间每天 09:23
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - sources.json
+      - scripts/**
+      - tests/**
+      - .github/workflows/sync.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: code-atlas-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 读取收藏仓库
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: 验证同步脚本
+        run: python3 -m unittest discover -s tests -v
+      - name: 获取上游源码快照
+        run: python3 scripts/sync.py
+      - name: 提交实际变更
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add --all -- repos sync-state.json CATALOG.md
+          if git diff --cached --quiet; then
+            echo '没有源码或目录变更，无需提交。' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: 同步上游源码快照'
+          git push origin HEAD:main
+          echo '上游源码快照与版本索引已更新。' >> "$GITHUB_STEP_SUMMARY"
