@@ -21,7 +21,7 @@
 
 ### Task 1: 同步机制与仓库交付
 **Files:** scripts/sync.py、tests/test_sync.py、sources.json、sync-state.json、CATALOG.md、README.md、.github/workflows/sync.yml
-- [ ] 用临时真实 Git 仓库验证首次导入、更新/删除、幂等、失败保留、路径/符号链接、LFS/子模块拒绝；观察失败。
-- [ ] 实现配置验证、安全归档、版本索引和同步流程；运行全部测试。
-- [ ] 增加中文文档和每天/手动 Actions，独立审查并处理重要问题。
-- [ ] 创建公开 GitHub 仓库，推送并手动运行首次工作流，确认 success 和公开状态。
+- [x] 用临时真实 Git 仓库验证首次导入、更新/删除、幂等、失败保留、路径/符号链接、LFS/子模块拒绝；观察失败。
+- [x] 实现配置验证、安全归档、版本索引和同步流程；运行全部测试。
+- [x] 增加中文文档和每天/手动 Actions，独立审查并处理重要问题。
+- [x] 创建公开 GitHub 仓库，推送并手动运行首次工作流，确认 success 和公开状态。
