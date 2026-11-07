@@ -37,7 +37,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add --all -- repos sync-state.json CATALOG.md
+          git add --force --all -- repos sync-state.json CATALOG.md
           if git diff --cached --quiet; then
             echo '没有源码或目录变更，无需提交。' >> "$GITHUB_STEP_SUMMARY"
             exit 0

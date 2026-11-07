@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import shlex
 import tarfile
 import tempfile
 import unittest
@@ -142,6 +143,26 @@ class SyncTests(unittest.TestCase):
             self.run_sync()
         self.assertEqual((self.root / 'repos/example/project/old.txt').read_text(), 'first\n')
         self.assertEqual((self.root / 'sync-state.json').read_bytes(), before)
+
+    def test_workflow_commits_tracked_upstream_files_even_if_ignored(self):
+        (self.up / '.gitignore').write_text('required.txt\n')
+        (self.up / 'required.txt').write_text('needed source')
+        (self.up / 'asset.pyc').write_bytes(b'upstream tracked asset')
+        git(self.up, 'add', '-f', 'required.txt', 'asset.pyc')
+        self.commit()
+        self.run_sync()
+        git(self.root, 'init', '-b', 'main')
+        git(self.root, 'config', 'user.name', 'Test')
+        git(self.root, 'config', 'user.email', 'test@example.invalid')
+        (self.root / '.gitignore').write_text('*.pyc\n')
+        workflow = (Path(__file__).parents[1] / '.github/workflows/sync.yml').read_text()
+        command = next(line.strip() for line in workflow.splitlines() if line.strip().startswith('git add '))
+        subprocess.run(shlex.split(command), cwd=self.root, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        git(self.root, 'commit', '-m', 'publish snapshot')
+        tracked = git(self.root, 'ls-tree', '-r', '--name-only', 'HEAD').splitlines()
+        self.assertIn('repos/example/project/required.txt', tracked)
+        self.assertIn('repos/example/project/asset.pyc', tracked)
+        self.assertEqual(git(self.root, 'show', 'HEAD:repos/example/project/required.txt'), 'needed source')
 
     def test_empty_list_and_existing_symlink_path(self):
         self.assertEqual(self.run_sync([]), 0)
