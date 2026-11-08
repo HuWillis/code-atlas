@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "repo": "pingdotgg/t3code",
+    "description": "T3 Code：统一管理本机 AI 编程代理的开源工作台，提供桌面、Web 与移动端；收藏用于研究多代理接入、远程控制和跨端交互实现。",
+    "branch": ""
+  }
+]
