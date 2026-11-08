@@ -15,6 +15,9 @@ HuWillis 的 GitHub 源码收藏仓库：把值得学习、使用和研究的项
 | 项目 | 简介 | 收录日期 |
 | --- | --- | --- |
 | [Ebony-Vinyl/dsh-our-free-model](https://github.com/Ebony-Vinyl/dsh-our-free-model) | DSH 模型接入插件及本地 API 网关，关注模型接入、渠道管理与转发实现。 | 2026-11-07 |
+| [T3 Code · pingdotgg/t3code](https://github.com/pingdotgg/t3code) | 开源 AI 编程代理工作台，提供桌面、Web 与移动端；关注多代理接入、远程控制与跨端交互实现。 | 2026-11-09 |
+
+T3 Code 上游包含 Git 子模块，当前源码同步器不支持完整收录，因此暂以链接方式收藏，不加入源码自动同步清单。
 
 ## 如何收录
 
